@@ -1,0 +1,7 @@
+{
+  "name": "filmstreaming",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
