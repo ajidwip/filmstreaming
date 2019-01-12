@@ -5,12 +5,12 @@ import { AdMobPro } from '@ionic-native/admob-pro';
 
 @IonicPage()
 @Component({
-  selector: 'page-detail',
-  templateUrl: 'detail.html',
+  selector: 'page-detailcategory',
+  templateUrl: 'detailcategory.html',
 })
-export class DetailPage {
+export class DetailcategoryPage {
 
-  public channel: any;
+  public genre: any;
   public channels = [];
   halaman = 0;
   public load: any;
@@ -22,7 +22,7 @@ export class DetailPage {
     public api: ApiProvider,
     public admob: AdMobPro
   ) {
-    this.channel = this.navParams.get('channel')
+    this.genre = this.navParams.get('genre')
     this.doGetChannels()
   }
   doGetChannels() {
@@ -33,7 +33,7 @@ export class DetailPage {
       }
       else {
         this.halaman++;
-        this.api.get("table/z_channel_stream", { params: { offset: offset, filter: "status='OPEN' AND name=" + "'" + this.channel.name + "'", limit: 30, sort: "title" + " ASC " } })
+        this.api.get("table/z_channel_stream", { params: { offset: offset, filter: "status='OPEN' AND imdb_genre LIKE '%" + this.genre + "%'", limit: 30, sort: "title" + " ASC " } })
           .subscribe(val => {
             let data = val['data']
             for (let i = 0; i < data.length; i++) {
@@ -68,7 +68,7 @@ export class DetailPage {
     let value = ev.target.value;
     // if the value is an empty string don't filter the items
     if (value && value.trim() != '') {
-      this.api.get("table/z_channel_stream", { params: { filter: "status='OPEN' AND title LIKE '%" + value + "%' AND name=" + "'" + this.channel.name + "'", limit: 30, sort: "title" + " ASC " } })
+      this.api.get("table/z_channel_stream", { params: { filter: "status='OPEN' AND title LIKE '%" + value + "%' AND imdb_genre LIKE '%" + this.genre + "%'", limit: 30, sort: "title" + " ASC " } })
         .subscribe(val => {
           let data = val['data']
           this.channels = data.filter(channel => {
@@ -82,7 +82,7 @@ export class DetailPage {
       this.doGetChannels();
     }
   }
-  doPreview(channeldetail){
+  doPreview(channeldetail) {
     this.navCtrl.push('PreviewPage', {
       channeldetail: channeldetail
     })

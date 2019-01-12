@@ -1,18 +1,18 @@
-<!--
-  Generated template for the CategoryPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>category</ion-title>
+  <ion-navbar color="darkgrey">
+    <ion-title>Category</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content style="background: #26262d;">
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let category of categorylist" col-4 padding style="text-align: center;background: #414146;border:2px solid;border-color:#26262d;border-radius: 5px;"
+          (click)="doGenre(category.name)">
+          <p style="color:#fff;font-weight: bold;font-size:90%">{{category.name}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

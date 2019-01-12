@@ -2,11 +2,11 @@
   <div class="preview-container" *ngIf="trailer">
     <img style="height:34%;width:100%;" src="https://img.youtube.com/vi/{{trailer}}/mqdefault.jpg">
     <div class="preview-bottom"></div>
-    <div class="preview-top-left">
-      <ion-icon style="color:#fff;font-size:25px;" name="md-arrow-back" (click)="doBack()"></ion-icon>
+    <div class="preview-top-left" (click)="doBack()">
+      <ion-icon style="color:#fff;font-size:25px;" name="md-arrow-back"></ion-icon>
     </div>
     <div class="preview-centered">
-      <button style="height:100%;" ion-button clear>
+      <button style="height:100%;" ion-button clear (click)="doGetPlay()">
         <img style="width:60%" src="../../assets/imgs/play.png">
       </button>
     </div>
@@ -27,10 +27,12 @@
       </ion-row>
       <ion-row>
         <ion-col col-6>
-          <button ion-button block color="light" style="font-size:12px;padding:23px;">Add To Bookmark</button>
+          <button *ngIf="inifavorit.length == 0" ion-button block color="light" style="font-size:12px;padding:23px;" (click)="doBookmark()">Add To Bookmark</button>
+          <button *ngIf="inifavorit.length != 0" ion-button block color="greendark" style="font-size:12px;padding:23px;" (click)="doBookmark()">Add To Bookmark</button>
         </ion-col>
         <ion-col col-6>
-          <button ion-button block outline color="light" style="font-size:12px;padding:23px;">Report</button>
+          <button *ngIf="report.length == 0" ion-button block outline color="light" style="font-size:12px;padding:23px;" (click)="doReport()" >Report</button>
+          <button *ngIf="report.length != 0" ion-button block outline color="danger" style="font-size:12px;padding:23px;" (click)="doReport()" >Report</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -43,12 +45,12 @@
         </ion-col>
       </ion-row>
       <ion-row style="border-bottom:1px solid;border-color:#dedede;padding-top:10px;padding-bottom:10px;">
-        <ion-col col-4 style="color:#9c9c9c;">DIRECTOR</ion-col>
-        <ion-col col-8 style="color:#fff;">{{channeldetail.imdb_director}}</ion-col>
+        <ion-col col-3 style="color:#9c9c9c;">DIRECTOR</ion-col>
+        <ion-col col-9 style="color:#fff;">{{channeldetail.imdb_director}}</ion-col>
       </ion-row>
       <ion-row style="border-bottom:1px solid;border-color:#dedede;padding-top:10px;padding-bottom:10px;">
-        <ion-col col-4 style="color:#9c9c9c;">ACTORS</ion-col>
-        <ion-col col-8 style="color:#fff;">{{channeldetail.imdb_actors}}</ion-col>
+        <ion-col col-3 style="color:#9c9c9c;">ACTORS</ion-col>
+        <ion-col col-9 style="color:#fff;">{{channeldetail.imdb_actors}}</ion-col>
       </ion-row>
     </ion-grid>
   </div>
@@ -81,3 +83,20 @@
     </div>
   </div>
 </ion-content>
+<div *ngIf="overlay" class="overlay" (click)="off()">
+  <div class="text">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button full color="darkgrey" style="font-weight: bold;font-size:15px;" (click)="doTrailer()">
+            Trial</button>
+        </ion-col>
+        <ion-col col-12 *ngFor="let server of listserver">
+          <button ion-button full color="dangernew" style="font-weight: bold;font-size:15px;" (click)="doPlay(server)">
+            {{server.quality}}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>

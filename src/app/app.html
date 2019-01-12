@@ -6,17 +6,89 @@
             </ion-title>
         </ion-toolbar>
         <ion-list style="background: #26262d;color:#fff;">
-            <ion-item no-lines (click)="doPage('RequestPage')" style="background: #26262d;color:#fff;">
+            <ion-item no-lines (click)="doRequest()" style="background: #26262d;color:#fff;">
                 Request Movie & Anime
             </ion-item>
-            <ion-item no-lines (click)="doPage('CommentPage')" style="background: #26262d;color:#fff;">
+            <ion-item (click)="doComment()" style="background: #26262d;color:#fff;">
                 Comment & Suggestion
             </ion-item>
-            <ion-item no-lines (click)="doPage('HelpPage')" style="background: #26262d;color:#fff;">
-                Help
+            <ion-item no-lines (click)="doPage('Anime')" style="background: #26262d;color:#fff;">
+                Anime
             </ion-item>
-            <ion-item no-lines (click)="doPage('AboutPage')" style="background: #26262d;color:#fff;">
-                About
+            <ion-item no-lines (click)="doPage('Film Indonesia')" style="background: #26262d;color:#fff;">
+                Film Indonesia
+            </ion-item>
+            <ion-item no-lines (click)="doPage('Film Barat')" style="background: #26262d;color:#fff;">
+                Film Barat
+            </ion-item>
+            <ion-item no-lines (click)="doPage('Film Jepang')" style="background: #26262d;color:#fff;">
+                Film Jepang
+            </ion-item>
+            <ion-item no-lines (click)="doPage('Film Korea')" style="background: #26262d;color:#fff;">
+                Film Korea
+            </ion-item>
+            <ion-item no-lines (click)="doPage('Film India')" style="background: #26262d;color:#fff;">
+                Film India
+            </ion-item>
+            <ion-item (click)="doPage('Film Series')" style="background: #26262d;color:#fff;">
+                Film Series
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Action')" style="background: #26262d;color:#fff;">
+                Action
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Adventure')" style="background: #26262d;color:#fff;">
+                Adventure
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Animation')" style="background: #26262d;color:#fff;">
+                Animation
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Comedy')" style="background: #26262d;color:#fff;">
+                Comedy
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Crime')" style="background: #26262d;color:#fff;">
+                Crime
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Documentary')" style="background: #26262d;color:#fff;">
+                Documentary
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Drama')" style="background: #26262d;color:#fff;">
+                Drama
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Family')" style="background: #26262d;color:#fff;">
+                Family
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Fantasy')" style="background: #26262d;color:#fff;">
+                Fantasy
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('History')" style="background: #26262d;color:#fff;">
+                History
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Horror')" style="background: #26262d;color:#fff;">
+                Horror
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Music')" style="background: #26262d;color:#fff;">
+                Music
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Mystery')" style="background: #26262d;color:#fff;">
+                Mystery
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Romance')" style="background: #26262d;color:#fff;">
+                Romance
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Sci-Fi')" style="background: #26262d;color:#fff;">
+                Sci-Fi
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Thriller')" style="background: #26262d;color:#fff;">
+                Thriller
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('War')" style="background: #26262d;color:#fff;">
+                War
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Western')" style="background: #26262d;color:#fff;">
+                Western
+            </ion-item>
+            <ion-item no-lines (click)="doGenre('Others')" style="background: #26262d;color:#fff;">
+                Others
             </ion-item>
         </ion-list>
     </ion-content>

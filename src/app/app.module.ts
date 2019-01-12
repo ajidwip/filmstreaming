@@ -11,6 +11,8 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+import { SafePipe } from '../pipes/safe/safe';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { AndroidFullScreen } from '@ionic-native/android-full-screen';
     ScreenOrientation,
     YoutubeVideoPlayer,
     ApiProvider,
-    AndroidFullScreen
+    AndroidFullScreen,
+    UniqueDeviceID
   ]
 })
 export class AppModule {}

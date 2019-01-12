@@ -1,18 +1,25 @@
-<!--
-  Generated template for the CommentPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>comment</ion-title>
+  <ion-navbar color="darkgrey">
+    <ion-title>{{name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content padding style="background:#26262d;">
+  <form [formGroup]="myForm">
+    <ion-item style="background:transparent;color:rgb(0, 0, 0);padding-right:12px;">
+      <ion-label *ngIf="param == '0'" stacked>ISI KOMENTAR</ion-label>
+      <ion-label *ngIf="param == '1'" stacked>ISI REQUEST</ion-label>
+      <ion-textarea formControlName="comment" style="color:#ffffff;"></ion-textarea>
+    </ion-item>
+  </form>
+  <p padding style="color:#aaaaaa;">Harap isi komentar, saran ataupun keluhan anda tentang aplikasi ini, komentar dan saran kalian sangat membantu developer
+    untuk mengembangkan aplikasi ini dan jangan lupa untuk memberikan rate dan komentar di Google PLAYSTORE, Terima kasih
+    banyak.
+  </p>
+  <ion-buttons padding>
+    <button ion-button color="primary" block outline style="height:40px;" [disabled]="!myForm.valid" (click)="doPostComment()">SUBMIT</button>
+    <button ion-button color="primary" block outline style="height:40px;" (click)="doGoToPlaystore()">GO TO PLAYSTORE</button>
+  </ion-buttons>
 </ion-content>

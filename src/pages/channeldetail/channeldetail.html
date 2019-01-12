@@ -1,0 +1,71 @@
+<ion-header id="header">
+  <ion-navbar color="darkgrey">
+    <div *ngIf="!showsearch" style="text-align:right;height:0px;margin-top:-10px;">
+      <button ion-button clear color="light" style="z-index: 999;" (click)="doShowSearch()">
+        <ion-icon name="md-search" style="font-size: 25px;"></ion-icon>
+      </button>
+    </div>
+    <ion-title *ngIf="!showsearch" style="text-align: left;margin-top:10px;">
+      {{anime}}
+    </ion-title>
+    <ion-searchbar *ngIf="showsearch" color="darkgrey" (ionInput)="getSearch($event)" placeholder="Search">
+    </ion-searchbar>
+    <ion-buttons end *ngIf="showsearch">
+      <button ion-button icon-only clear (click)='doHideSearch()'>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background:#26262d;">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+      pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-row style="background: #dedede;">
+    <ion-col padding col-3 style="border-right:1px solid;border-color:#ffffff;">EPS</ion-col>
+    <ion-col padding col-6 style="border-right:1px solid;border-color:#ffffff;">JUDUL</ion-col>
+    <ion-col padding col-3>PUTAR</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let channel of channeldetail">
+    <ion-col padding col-3 style="border-right:1px solid;border-bottom:1px solid;border-color:#dedede;color:#ffffff;">{{channel.episode}}</ion-col>
+    <ion-col padding col-6 style="border-right:1px solid;border-bottom:1px solid;border-color:#dedede;color:#ffffff;">{{channel.name}} Episode {{channel.episode}}</ion-col>
+    <ion-col padding col-3 style="border-bottom:1px solid;border-color:#dedede;text-align: center;color:#ffffff;" (click)="doQuality(channel)">
+      <ion-icon style="color:#42b549;font-size:30px;" name="logo-youtube"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content>
+      loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<div id="qualitya" class="quality" style="background:#fff;border:1px solid;border-color:#26262d;">
+  <ion-header>
+    <ion-toolbar color="darkgrey" style="border:1px solid;border-color:#fff;">
+      <ion-title>
+        Server List
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list style="margin-top:60px;background:#fff;color:#26262d;" radio-group [(ngModel)]="qualityid">
+    <ion-item *ngFor="let qty of quality" style="background:#fff;color:#26262d;">
+      <ion-label style="color:#26262d;">{{qty.quality}}</ion-label>
+      <ion-radio color="darkgrey" value="{{qty.id}}" (ionSelect)="doSelectQuality()"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-footer>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button full color="darkgrey" style="font-weight: bold;font-size:15px;" (click)="doPlayer()">
+          <ion-icon name="md-play"></ion-icon>&nbsp;&nbsp;&nbsp;Play</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button full color="danger" style="font-weight: bold;font-size:15px;" (click)="doCloseQuality()">
+          <ion-icon name="md-close-circle"></ion-icon>&nbsp;&nbsp;&nbsp;Cancel</button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>
+</div>

@@ -1,0 +1,48 @@
+<ion-header id="header">
+  <ion-navbar color="darkgrey">
+    <div *ngIf="!showsearch" style="text-align:right;height:0px;margin-top:-10px;">
+      <button ion-button clear color="light" style="z-index: 999;" (click)="doShowSearch()">
+        <ion-icon name="md-search" style="font-size: 25px;"></ion-icon>
+      </button>
+    </div>
+    <ion-title *ngIf="!showsearch" style="text-align: left;margin-top:10px;">
+      {{genre}}
+    </ion-title>
+    <ion-searchbar *ngIf="showsearch" color="darkgrey" (ionInput)="getSearch($event)" placeholder="Search">
+    </ion-searchbar>
+    <ion-buttons end *ngIf="showsearch">
+      <button ion-button icon-only clear (click)='doHideSearch()'>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background: #26262d;">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let channeldetail of channels" col-4>
+        <div class="container" (click)="doPreview(channeldetail)">
+          <img *ngIf="load != 'OK'" src="../../assets/imgs/ometube.jpg" style="height:150px;width:100%;" />
+          <img *ngIf="load == 'OK'" src="{{channeldetail.thumbnail_picture}}" style="height:150px;width:100%;" />
+          <div class="bottom"></div>
+          <div class="top-left">{{channeldetail.title_backup}}</div>
+          <div class="top-right">{{channeldetail.quality_backup}}</div>
+          <!-- <div class="centered">
+                  <ion-icon name="md-play"></ion-icon>
+                </div> -->
+          <div class="bottom-left">
+            {{channeldetail.imdb_year}}
+          </div>
+          <div class="bottom-right">
+            <ion-icon style="color:#fff45e;" name="md-star"></ion-icon>&nbsp;{{channeldetail.imdb_rating}}
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content>
+      loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
