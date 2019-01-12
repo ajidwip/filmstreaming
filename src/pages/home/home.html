@@ -1,14 +1,75 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-toolbar color="darkgrey">
+    <div style="text-align:right;height:0px;margin-top:-10px;">
+      <button ion-button clear color="light" style="z-index: 999;" (click)="doPage('SearchPage')">
+        <ion-icon name="md-search" style="font-size: 25px;"></ion-icon>
+      </button>
+    </div>
+    <button ion-button menuToggle left>
+      <ion-icon style="font-size:25px;" name="md-menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: left;margin-top:10px;">
+      Home
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
+  <ion-grid style="background: #26262d;">
+    <ion-row style="background: #26262d;">
+      <ion-col style="text-align: center;" (click)="doRootPage()">
+        <ion-icon style="font-size: 25px;color:#fff;font-weight: bold;" name="md-home"></ion-icon>
+        <div style="color:#fff;font-size:12px;padding-top:5px;">Home</div>
+      </ion-col>
+      <ion-col style="text-align: center;" (click)="doPage('CategoryPage')">
+        <ion-icon style="font-size: 25px;color:#fff;font-weight: bold;" name="md-list-box"></ion-icon>
+        <div style="color:#fff;font-size:12px;padding-top:5px;">Category</div>
+      </ion-col>
+      <ion-col style="text-align: center;" (click)="doPage('BookmarkPage')">
+        <ion-icon style="font-size: 25px;color:#fff;font-weight: bold;" name="md-bookmark"></ion-icon>
+        <div style="color:#fff;font-size:12px;padding-top:5px;">Bookmark</div>
+      </ion-col>
+      <ion-col style="text-align: center;" (click)="doRate()">
+        <ion-icon style="font-size: 25px;color:#fff;font-weight: bold;" name="md-star"></ion-icon>
+        <div style="color:#fff;font-size:12px;padding-top:5px;">Rate</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content style="background: #414146;">
+  <div *ngFor="let channel of channellistall">
+    <ion-item no-lines style="background:transparent;margin-bottom:-15px;">
+      <div style="font-size:15px;color:#fff;font-weight: bold;">{{channel.name}}</div>
+      <div item-end style="font-size:12px;color:#fff;font-weight: bold;" (click)="doDetail(channel)">MORE</div>
+    </ion-item>
+    <div *ngIf="channel.category == 'STREAM'">
+      <ion-slides *ngIf="channels && channels.length" freeMode="true" spaceBetween="-10" slidesPerView="2.2" loop="true">
+        <div *ngFor="let channeldetail of channels">
+          <ion-slide *ngIf="channeldetail.name == channel.name" (click)="doPreview(channeldetail)">
+            <ion-card>
+              <div class="container">
+                <img *ngIf="load != 'OK'" src="../../assets/imgs/ometube.jpg" style="height:190px;width:100%;" />
+                <img *ngIf="load == 'OK'"src="{{channeldetail.thumbnail_picture}}" style="height:190px;width:100%;" />
+                <div class="bottom"></div>
+                <div class="top-left">{{channeldetail.title_backup}}</div>
+                <div class="top-right">{{channeldetail.quality_backup}}</div>
+                <!-- <div class="centered">
+                  <ion-icon name="md-play"></ion-icon>
+                </div> -->
+                <div class="bottom-left">
+                  {{channeldetail.imdb_year}}
+                </div>
+                <div class="bottom-right">
+                  <ion-icon style="color:#fff45e;" name="md-star"></ion-icon>&nbsp;{{channeldetail.imdb_rating}}
+                </div>
+              </div>
+            </ion-card>
+          </ion-slide>
+        </div>
+      </ion-slides>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content>
+      loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

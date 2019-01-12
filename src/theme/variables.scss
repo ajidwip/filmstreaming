@@ -36,11 +36,31 @@ $app-direction: ltr;
 $colors: (
   primary:    #488aff,
   secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  danger:     #d80f0f,
+  light:      #ffffff,
+  dark:       #222,
+  bluedark:   #092e61,
+  darklight:  #dedede,
+  greendark:  #42b549,
+  bluewhite:  #1ba0e2,
+  darkgrey:   #26262d,
+  greydark:   #e0e0e0,
+  green2:     #2b6461,
+  transparent: transparent
 );
 
+$searchbar-md-input-background-color: #26262d;
+$searchbar-md-input-text-color: #ffffff;
+$searchbar-md-input-placeholder-color: #dedede;
+$searchbar-md-input-clear-icon-color: #ffffff;
+$searchbar-md-input-box-shadow: #ffffff;
+$searchbar-md-input-search-icon-color: #ffffff;
+
+$loading-ios-background: transparent;
+$loading-md-background: $loading-ios-background;
+$loading-wp-background: $loading-ios-background;
+$loading-md-box-shadow: none;
+$loading-md-spinner-color: #ffffff;
 
 // App iOS Variables
 // --------------------------------------------------

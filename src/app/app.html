@@ -1,1 +1,25 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="left" [content]="mycontent">
+    <ion-content style="background: #26262d;color:#fff;">
+        <ion-toolbar color="darkgrey">
+            <ion-title style="margin:auto;">
+                Menu
+            </ion-title>
+        </ion-toolbar>
+        <ion-list style="background: #26262d;color:#fff;">
+            <ion-item no-lines (click)="doPage('RequestPage')" style="background: #26262d;color:#fff;">
+                Request Movie & Anime
+            </ion-item>
+            <ion-item no-lines (click)="doPage('CommentPage')" style="background: #26262d;color:#fff;">
+                Comment & Suggestion
+            </ion-item>
+            <ion-item no-lines (click)="doPage('HelpPage')" style="background: #26262d;color:#fff;">
+                Help
+            </ion-item>
+            <ion-item no-lines (click)="doPage('AboutPage')" style="background: #26262d;color:#fff;">
+                About
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
